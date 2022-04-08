@@ -230,7 +230,7 @@ class Main:
                             self.NM += 1
                             self.mn += 1
                             print(f'  [ + ] Trying To Skip 14 days : {self.Target} | {datetime.datetime.now()}')
-                            ctypes.windll.user32.MessageBoxW(0, f'Trying To Skip 14 Days @{self.Target}\nby #Lost Monitor','#Lost Monitor')
+                           
                             try:
                                 mUrl = self.webhook[0]
                             except:
