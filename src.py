@@ -162,8 +162,6 @@ class Main:
             for Target in self.LISTL:
                 if Target in ssss:
                     pass
-                if Target in self.remove:
-                    pass
                 else:
                         ssss.append(Target)
                         if self.MODE_PR == '1':
@@ -205,7 +203,8 @@ class Main:
                                         pass
                                     with open('monitored.txt','a') as wr:
                                         wr.write(f'{Target}\n')
-                                    self.remove.append(Target)
+                                    self.LISTL.remove(Target)
+                                    Target.join('notykjsdgfsghgfsdhgfskjfgjklfjhjlfghhjhjflhklfjhlfhjglhjklgjhlfjghjs')
                                 elif ("This username isn't available.") in self.reqq:self.dn+=1
                                 else:self.erro+=1
                         except:self.erro+=1
