@@ -162,10 +162,9 @@ class Main:
             for Target in self.LISTL:
                 if Target in ssss:
                     pass
+                if Target in self.remove:
+                    pass
                 else:
-                    if Target in self.remove:
-                        pass
-                    else:
                         ssss.append(Target)
                         if self.MODE_PR == '1':
                             proxq = random.choice(self.PROXIES)
