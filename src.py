@@ -24,9 +24,11 @@ print("""
                 ████████╗██║     ██║   ██║╚════██║   ██║   
                 ╚██╔═██╔╝███████╗╚██████╔╝███████║   ██║   
                  ╚═╝ ╚═╝ ╚══════╝ ╚═════╝ ╚══════╝   ╚═╝   
-                                           
-                                                                                   
+
+
 """)
+
+
 def RandomStringUpper(n=10):
     letters = string.ascii_uppercase + '1234567890'
     return ''.join(random.choice(letters) for i in range(n))
@@ -75,12 +77,18 @@ def generateUSER_AGENT():
     }
     return '{Host} 155.0.0.37.107 {system} ({android_version}/{android_release}; {dpi}dpi; {resolution}; {manufacturer}; {model}; {cpu}; {randomL}; en_US)'.format(
         **DEVICE_SETTINTS)
+
+
 nospam = (''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for i in range(16)))
 ssss = []
 ssss1 = []
+
+
 def exit_():
     input(f'{bad} Enter To Exit : ')
     os._exit(1)
+
+
 class Main:
     def __init__(self):
         self.LISTL = []
@@ -93,13 +101,13 @@ class Main:
         self.remove = []
         self.DONE = 0
         self.ERROR = 0
-        self.counting_pr , self.counting_li , self.counting_ses , self.counting_pr2 = 0,0,0,0
-        self.dn , self.erro , self.mn = 0,0,0
+        self.counting_pr, self.counting_li, self.counting_ses, self.counting_pr2 = 0, 0, 0, 0
+        self.dn, self.erro, self.mn = 0, 0, 0
         try:
-            self.webhook = open('webhook.txt','r').read().splitlines()
-            self.PROXIES = open('proxies.txt','r').read().splitlines()
+            self.webhook = open('webhook.txt', 'r').read().splitlines()
+            self.PROXIES = open('proxies.txt', 'r').read().splitlines()
             for i in self.PROXIES:
-                self.counting_pr+=1
+                self.counting_pr += 1
             print(f'{good} {self.counting_pr} Proxies Have Been Grabbed')
             self.LIST = open('list.txt', 'r').read().splitlines()
             for i in self.LIST:
@@ -107,17 +115,19 @@ class Main:
             print(f'{good} Usernames List Have Been Grabbed')
             self.SESSIONS = open('sessions.txt', 'r').read().splitlines()
             for i in self.SESSIONS:
-                self.counting_ses+=1
+                self.counting_ses += 1
             print(f'{good} {self.counting_ses} Sessions Have Been Grabbed')
             for i in self.SESSIONS:
                 self.SESSIONSL.append(i)
-            self.PROXIES_SWAP = open('proxies-swap.txt','r').read().splitlines()
+            self.PROXIES_SWAP = open('proxies-swap.txt', 'r').read().splitlines()
             for i in self.PROXIES_SWAP:
-                self.counting_pr2+=1
+                self.counting_pr2 += 1
             print(f'{good} {self.counting_pr2} Swap Proxies Have Been Grabbed')
-        except Exception as eeer : input(f'{bad} {eeer}');exit_()
+        except Exception as eeer:
+            input(f'{bad} {eeer}');exit_()
         print('  ---------------------------------------------------------------------')
-        self.MODE = input(f'  [ 1 ] Monitor skip 14 days\n  [ 2 ] Monitoring target\n  [ 3 ] Monitoring target With Auto Claim\n  [ ? ] Enter Mode : ')
+        self.MODE = input(
+            f'  [ 1 ] Monitor skip 14 days\n  [ 2 ] Monitoring target\n  [ 3 ] Monitoring target With Auto Claim\n  [ ? ] Enter Mode : ')
         self.Target = input(f'{qs} Enter Target (if you chose [1] press enter) : ')
         self.MODE_PR = input(f'  [ 1 ] Http/s\n  [ 2 ] Socks4\n  [ ? ] Enter Proxies Mode : ')
         self.THE = input(f'{qs} Enter Threading : ')
@@ -156,13 +166,18 @@ class Main:
 
     def counting(self):
         while True:
-            ctypes.windll.kernel32.SetConsoleTitleW(f'[monitored : {self.mn}] [checked : {self.dn}] [error : {self.erro}]')
+            ctypes.windll.kernel32.SetConsoleTitleW(
+                f'[monitored : {self.mn}] [checked : {self.dn}] [error : {self.erro}]')
+
     def M_1(self):
         while True:
             for Target in self.LISTL:
                 if Target in ssss:
                     pass
                 else:
+                    if Target in self.remove:
+                        pass
+                    else:
                         ssss.append(Target)
                         if self.MODE_PR == '1':
                             proxq = random.choice(self.PROXIES)
@@ -171,7 +186,8 @@ class Main:
                             proxq = random.choice(self.PROXIES)
                             proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
                         self.url = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
-                        self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
+                        self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha',
+                                     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
                         self.data = {
                             'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
                             'email': f"{(''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for i in range(16)))}@gmail.com",
@@ -182,15 +198,16 @@ class Main:
                             'opt_into_one_tap': 'false',
                         }
                         try:
-                            self.reqq = requests.post(url=self.url,data=self.data,headers=self.head,proxies=proxy).text
+                            self.reqq = requests.post(url=self.url, data=self.data, headers=self.head, proxies=proxy).text
                             if ("Please try another.") in self.reqq:
-                                self.mn+=1
-                                if self.xc ==0:
-                                    self.xc +=1
+                                self.mn += 1
+                                if self.xc == 0:
+                                    self.xc += 1
                                     print(f'  [ + ] Trying To Skip 14 days : {Target} | {datetime.datetime.now()}')
                                     try:
                                         mUrl = self.webhook[0]
-                                    except:""
+                                    except:
+                                        ""
                                     data = {}
                                     data["embeds"] = [
                                         {
@@ -201,14 +218,17 @@ class Main:
                                         response2 = requests.post(mUrl, json=data)
                                     except:
                                         pass
-                                    with open('monitored.txt','a') as wr:
+                                    with open('monitored.txt', 'a') as wr:
                                         wr.write(f'{Target}\n')
-                                    self.LISTL.remove(Target)
-                                    Target.join('notykjsdgfsghgfsdhgfskjfgjklfjhjlfghhjhjflhklfjhlfhjglhjklgjhlfjghjs')
-                                elif ("This username isn't available.") in self.reqq:self.dn+=1
-                                else:self.erro+=1
-                        except:self.erro+=1
+                                    self.remove.append(Target)
+                                elif ("This username isn't available.") in self.reqq:
+                                    self.dn += 1
+                                else:
+                                    self.erro += 1
+                        except:
+                            self.erro += 1
             ssss.clear()
+
     def CM(self):
         while True:
             if self.MODE_PR == '1':
@@ -218,7 +238,8 @@ class Main:
                 proxq = random.choice(self.PROXIES)
                 proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
             self.urla = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
-            self.heada = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
+            self.heada = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha',
+                          'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
             self.dataa = {
                 'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
                 'email': f"{(''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for i in range(16)))}@gmail.com",
@@ -236,7 +257,9 @@ class Main:
                             self.NM += 1
                             self.mn += 1
                             print(f'  [ + ] Trying To Skip 14 days : {self.Target} | {datetime.datetime.now()}')
-                            ctypes.windll.user32.MessageBoxW(0, f'Trying To Skip 14 Days @{self.Target}\nby #Lost Monitor','#Lost Monitor')
+                            ctypes.windll.user32.MessageBoxW(0,
+                                                             f'Trying To Skip 14 Days @{self.Target}\nby #Lost Monitor',
+                                                             '#Lost Monitor')
                             try:
                                 mUrl = self.webhook[0]
                             except:
@@ -257,9 +280,11 @@ class Main:
                         break
                     elif ("This username isn't available.") in berr:
                         self.dn += 1
-                    else:self.erro+=1
+                    else:
+                        self.erro += 1
                 except:
-                 self.erro += 1
+                    self.erro += 1
+
     def M_2(self):
         while True:
             if self.MODE_PR == '1':
@@ -269,7 +294,8 @@ class Main:
                 proxq = random.choice(self.PROXIES)
                 proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
             self.url = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
-            self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
+            self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha',
+                         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
             self.data = {
                 'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
                 'email': f"yusdbbfyevhh4e@gmail.com",
@@ -282,7 +308,7 @@ class Main:
             try:
                 self.reqq = requests.post(url=self.url, data=self.data, headers=self.head, proxies=proxy).text
                 if ("Please try another.") in self.reqq:
-                    self.dn+=1
+                    self.dn += 1
                 elif ("This username isn't available.") in self.reqq:
                     threads1 = []
                     TR = int(self.THE)
@@ -294,10 +320,13 @@ class Main:
                         thread.join()
                 else:
                     self.erro += 1
-            except :self.erro+=1
+            except:
+                self.erro += 1
+
     def cc(self):
         while True:
             print(f'  AT : {self.DONE} | ER : {self.ERROR}')
+
     def claim(self):
         while True:
             for SES in self.SESSIONSL:
@@ -314,7 +343,8 @@ class Main:
                         url2 = 'https://i.instagram.com/api/v1/accounts/set_username/'
                         data2 = {'username': self.Target}
                         SwapS = requests.post(url2, headers={'User-Agent': generateUSER_AGENT(), "Accept": "*/*",
-                                                             "Accept-Encoding": "gzip, deflate", "Accept-Language": "en-US",
+                                                             "Accept-Encoding": "gzip, deflate",
+                                                             "Accept-Language": "en-US",
                                                              "X-IG-Capabilities": "3brTvw==",
                                                              "X-IG-Connection-Type": "WIFI",
                                                              "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -339,16 +369,20 @@ class Main:
                                     requests.post('https://i.instagram.com/api/v1/accounts/set_biography/',
                                                   data={"raw_text": ''},
                                                   headers={'User-Agent': generateUSER_AGENT(), "Accept": "*/*",
-                                                           "Accept-Encoding": "gzip, deflate", "Accept-Language": "en-US",
-                                                           "X-IG-Capabilities": "3brTvw==", "X-IG-Connection-Type": "WIFI",
+                                                           "Accept-Encoding": "gzip, deflate",
+                                                           "Accept-Language": "en-US",
+                                                           "X-IG-Capabilities": "3brTvw==",
+                                                           "X-IG-Connection-Type": "WIFI",
                                                            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                                                            'Host': 'i.instagram.com', 'Connection': 'keep-alive'},
                                                   cookies={'sessionid': f'{SES}'})
                                     requests.post('https://i.instagram.com/api/v1/accounts/set_phone_and_name/',
                                                   data={"first_name": '#Lost Monitor'},
                                                   headers={'User-Agent': generateUSER_AGENT(), "Accept": "*/*",
-                                                           "Accept-Encoding": "gzip, deflate", "Accept-Language": "en-US",
-                                                           "X-IG-Capabilities": "3brTvw==", "X-IG-Connection-Type": "WIFI",
+                                                           "Accept-Encoding": "gzip, deflate",
+                                                           "Accept-Language": "en-US",
+                                                           "X-IG-Capabilities": "3brTvw==",
+                                                           "X-IG-Connection-Type": "WIFI",
                                                            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                                                            'Host': 'i.instagram.com', 'Connection': 'keep-alive'},
                                                   cookies={'sessionid': f'{SES}'})
@@ -366,14 +400,16 @@ class Main:
                                         'Host': 'i.instagram.com',
                                         'Connection': 'keep-alive'}
                                     GetUrl = 'https://i.instagram.com/api/v1/accounts/current_user/?edit=true'
-                                    gett = requests.get(GetUrl, headers=headerss,cookies={'sessionid': f'{SES}'}).json()
+                                    gett = requests.get(GetUrl, headers=headerss,
+                                                        cookies={'sessionid': f'{SES}'}).json()
                                     email = gett['user']['email']
                                     with open(f'@{self.Target}.txt', 'a') as dee:
                                         dee.write(f'username : {self.Target}\nsessionid : {SES}\ne-mail : {email}')
 
                                 except:
                                     pass
-                                ctypes.windll.user32.MessageBoxW(0, f'Claimed @{self.Target}\nby #Lost Monitor', '#Lost Monitor')
+                                ctypes.windll.user32.MessageBoxW(0, f'Claimed @{self.Target}\nby #Lost Monitor',
+                                                                 '#Lost Monitor')
                                 try:
                                     os._exit(1)
                                 except:
@@ -382,56 +418,58 @@ class Main:
                             self.DONE += 1
                         else:
                             self.ERROR += 1
-                    except:self.ERROR+=1
+                    except:
+                        self.ERROR += 1
             self.SESSIONSL.clear()
+
     def M_3(self):
-            while True:
-                if self.MODE_PR == '1':
-                    proxq = random.choice(self.PROXIES)
-                    proxy = {'http': f"http://{proxq}", 'https': f"http://{proxq}"}
-                elif self.MODE_PR == '2':
-                    proxq = random.choice(self.PROXIES)
-                    proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
-                self.url = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
-                self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha',
-                             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
-                self.data = {
-                    'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
-                    'email': f"yusdbbfyevhh4e@gmail.com",
-                    'username': self.Target,
-                    'first_name': '',
-                    'client_id': 'YisYKgALAAF0qjQcjA3DYLPTWVsL',
-                    'seamless_login_enabled': '1',
-                    'opt_into_one_tap': 'false',
-                }
-                try:
-                    self.reqq = requests.post(url=self.url, data=self.data, headers=self.head, proxies=proxy).text
-                    if ("Please try another.") in self.reqq:
-                        self.dn += 1
-                    elif ("This username isn't available.") in self.reqq:
-                        while True:
-                            self.reqq_ = requests.post(url=self.url, data=self.data, headers=self.head,
-                                                       proxies=proxy).text
-                            if ("Please try another.") in self.reqq_:
-                                if self.NM == 0:
-                                    self.NM += 1
-                                    print(f'  [ + ] Trying To Skip 14 days : {self.Target} | {datetime.datetime.now()}')
-                                    print("")
-                                    print(f'  [ + ] Trying To Claim : @{self.Target}')
-                                    print("")
-                                    threading.Thread(target=self.cc)
-                                    threads12 = []
-                                    TRq = int(1200)
-                                    for i in range(TRq):
-                                        thread1q = threading.Thread(target=self.claim)
-                                        thread1q.start()
-                                        threads12.append(thread1q)
-                                    for threadq in threads12:
-                                        threadq.join()
-                    else:
-                        self.erro += 1
-                except:
+        while True:
+            if self.MODE_PR == '1':
+                proxq = random.choice(self.PROXIES)
+                proxy = {'http': f"http://{proxq}", 'https': f"http://{proxq}"}
+            elif self.MODE_PR == '2':
+                proxq = random.choice(self.PROXIES)
+                proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
+            self.url = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
+            self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha',
+                         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
+            self.data = {
+                'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
+                'email': f"yusdbbfyevhh4e@gmail.com",
+                'username': self.Target,
+                'first_name': '',
+                'client_id': 'YisYKgALAAF0qjQcjA3DYLPTWVsL',
+                'seamless_login_enabled': '1',
+                'opt_into_one_tap': 'false',
+            }
+            try:
+                self.reqq = requests.post(url=self.url, data=self.data, headers=self.head, proxies=proxy).text
+                if ("Please try another.") in self.reqq:
+                    self.dn += 1
+                elif ("This username isn't available.") in self.reqq:
+                    while True:
+                        self.reqq_ = requests.post(url=self.url, data=self.data, headers=self.head,
+                                                   proxies=proxy).text
+                        if ("Please try another.") in self.reqq_:
+                            if self.NM == 0:
+                                self.NM += 1
+                                print(f'  [ + ] Trying To Skip 14 days : {self.Target} | {datetime.datetime.now()}')
+                                print("")
+                                print(f'  [ + ] Trying To Claim : @{self.Target}')
+                                print("")
+                                threading.Thread(target=self.cc)
+                                threads12 = []
+                                TRq = int(1200)
+                                for i in range(TRq):
+                                    thread1q = threading.Thread(target=self.claim)
+                                    thread1q.start()
+                                    threads12.append(thread1q)
+                                for threadq in threads12:
+                                    threadq.join()
+                else:
                     self.erro += 1
+            except:
+                self.erro += 1
 
 
 Main()
