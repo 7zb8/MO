@@ -1,3 +1,4 @@
+
 try:
     TEXT = requests.get('https://pastebin.com/raw/Gsdk2fKV').text
     GetIP = requests.get('https://api.ipify.org?format=json').text
@@ -189,7 +190,7 @@ class Main:
                             data = {}
                             data["embeds"] = [
                                 {
-                                    "description": f"\n[+] @{Target} Trying To Skip 14 Day",
+                                    "description": f"\n[+] @{Target} Trying To Skip 14 Day\n{datetime.datetime.now()}",
                                     "color": random.choice([0x3498db]), "thumbnail": {"url": ""},
                                     "author": {"name": "#Lost Monitor"}}]
                             try:
@@ -230,7 +231,7 @@ class Main:
                             self.NM += 1
                             self.mn += 1
                             print(f'  [ + ] Trying To Skip 14 days : {self.Target} | {datetime.datetime.now()}')
-                           
+                            ctypes.windll.user32.MessageBoxW(0, f'Trying To Skip 14 Days @{self.Target}\nby #Lost Monitor','#Lost Monitor')
                             try:
                                 mUrl = self.webhook[0]
                             except:
