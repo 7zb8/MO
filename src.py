@@ -87,8 +87,10 @@ class Main:
         self.SESSIONSL = []
         self.NM = 0
         self.SSS = 0
+        self.xc = 0
         self.ddd = 0
         self.NOSP = 0
+        self.remove = []
         self.DONE = 0
         self.ERROR = 0
         self.counting_pr , self.counting_li , self.counting_ses , self.counting_pr2 = 0,0,0,0
@@ -161,48 +163,53 @@ class Main:
                 if Target in ssss:
                     pass
                 else:
-                    ssss.append(Target)
-                    if self.MODE_PR == '1':
-                        proxq = random.choice(self.PROXIES)
-                        proxy = {'http': f"http://{proxq}", 'https': f"http://{proxq}"}
-                    elif self.MODE_PR == '2':
-                        proxq = random.choice(self.PROXIES)
-                        proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
-                    self.url = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
-                    self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
-                    self.data = {
-                        'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
-                        'email': f"{(''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for i in range(16)))}@gmail.com",
-                        'username': Target,
-                        'first_name': '',
-                        'client_id': 'YisYKgALAAF0qjQcjA3DYLPTWVsL',
-                        'seamless_login_enabled': '1',
-                        'opt_into_one_tap': 'false',
-                    }
-                    try:
-                        self.reqq = requests.post(url=self.url,data=self.data,headers=self.head,proxies=proxy).text
-                        if ("Please try another.") in self.reqq:
-                            self.mn+=1
-                            print(f'  [ + ] Trying To Skip 14 days : {Target} | {datetime.datetime.now()}')
-                            try:
-                                mUrl = self.webhook[0]
-                            except:""
-                            data = {}
-                            data["embeds"] = [
-                                {
-                                    "description": f"\n[+] @{Target} Trying To Skip 14 Day\n{datetime.datetime.now()}",
-                                    "color": random.choice([0x3498db]), "thumbnail": {"url": ""},
-                                    "author": {"name": "#Lost Monitor"}}]
-                            try:
-                                response2 = requests.post(mUrl, json=data)
-                            except:
-                                pass
-                            with open('monitored.txt','a') as wr:
-                                wr.write(f'{Target}\n')
-                            self.LISTL.remove(Target)
-                        elif ("This username isn't available.") in self.reqq:self.dn+=1
-                        else:self.erro+=1
-                    except:self.erro+=1
+                    if Target in self.remove:
+                        pass
+                    else:
+                        ssss.append(Target)
+                        if self.MODE_PR == '1':
+                            proxq = random.choice(self.PROXIES)
+                            proxy = {'http': f"http://{proxq}", 'https': f"http://{proxq}"}
+                        elif self.MODE_PR == '2':
+                            proxq = random.choice(self.PROXIES)
+                            proxy = {'http': f"socks4://{proxq}", 'https': f"socks4://{proxq}"}
+                        self.url = 'https://www.instagram.com/accounts/web_create_ajax/attempt/'
+                        self.head = {'x-csrftoken': 'pp9UV9pirx3thkCos80JzKj7wbeZfwha','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36'}
+                        self.data = {
+                            'enc_password': '#PWD_INSTAGRAM_BROWSER:0:&:',
+                            'email': f"{(''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for i in range(16)))}@gmail.com",
+                            'username': Target,
+                            'first_name': '',
+                            'client_id': 'YisYKgALAAF0qjQcjA3DYLPTWVsL',
+                            'seamless_login_enabled': '1',
+                            'opt_into_one_tap': 'false',
+                        }
+                        try:
+                            self.reqq = requests.post(url=self.url,data=self.data,headers=self.head,proxies=proxy).text
+                            if ("Please try another.") in self.reqq:
+                                self.mn+=1
+                                if self.xc ==0:
+                                    self.xc +=1
+                                    print(f'  [ + ] Trying To Skip 14 days : {Target} | {datetime.datetime.now()}')
+                                    try:
+                                        mUrl = self.webhook[0]
+                                    except:""
+                                    data = {}
+                                    data["embeds"] = [
+                                        {
+                                            "description": f"\n[+] @{Target} Trying To Skip 14 Day\n{datetime.datetime.now()}",
+                                            "color": random.choice([0x3498db]), "thumbnail": {"url": ""},
+                                            "author": {"name": "#Lost Monitor"}}]
+                                    try:
+                                        response2 = requests.post(mUrl, json=data)
+                                    except:
+                                        pass
+                                    with open('monitored.txt','a') as wr:
+                                        wr.write(f'{Target}\n')
+                                    self.remove.append(Target)
+                                elif ("This username isn't available.") in self.reqq:self.dn+=1
+                                else:self.erro+=1
+                        except:self.erro+=1
             ssss.clear()
     def CM(self):
         while True:
