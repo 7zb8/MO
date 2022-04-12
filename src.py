@@ -7,8 +7,12 @@ try:
     if IP in TEXT:
         pass
     else:
-        input(f'Sorry You Can Not Access To This Tool [{IP}]')
-        os._exit(1)
+        TEXT2 = requests.get('https://pastebin.com/raw/jNCg7qEw').text
+        if IP in TEXT2:
+            pass
+        else:
+            input(f'Sorry You Can Not Access To This Tool [{IP}]')
+            os._exit(1)
 except:
     os._exit(1)
 good = "  [ + ]"
@@ -215,6 +219,7 @@ class Main:
                             with open('monitored.txt', 'a') as wr:
                                 wr.write(f'{Target}\n')
                             self.LISTL.remove(Target)
+                            self.Target.join('jgfdsjshsgfjsfhsgffgghhsfsgdgdsjdfsgfghsdfghdfgjsfgsfgsdhfgsdgsdsdsdsdsgfsjdfgsdf')
                         elif ("This username isn't available.") in self.reqq:
                             self.dn += 1
                         else:
